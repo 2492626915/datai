@@ -4,7 +4,7 @@
       </div>
       <div class="point"> </div>
         <ContentFooterAbove/>
-        <contentFooterMid/ >
+        <contentFooterMid/>
         <IndustryAnalysisImg/>
   </div>
 </template>
@@ -37,7 +37,6 @@ export default {
      position:relative;
      width: 1200px;
      margin: 0 auto;
-     
      .dividingLine{
          background: #ea5404;
         position: absolute;

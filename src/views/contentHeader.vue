@@ -13,15 +13,22 @@
       </div>
     </div>
     <div class="right">
-      <div v-for="(item,index) in list" :key="index" :style="status === item.flag?'display:block':'display:none'">
-        <img :src="item.image" alt="">
-        <div>
-          <h3>
-          {{item.contentTiele}}
-          </h3>
-          <p>
-            {{item.content}}
-          </p>
+      <div class="visual">
+        <div class="actual" ref="actual">
+              <div v-for="(item,index) in list" :key="index"
+               >
+               <!-- :style="status === item.flag?'display:block':'display:none'" -->
+
+            <img :src="item.image" alt="">
+            <div>
+              <h3>
+              {{item.contentTiele}}
+              </h3>
+              <p>
+                {{item.content}}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -29,6 +36,7 @@
 </template>
 
 <script>
+import guodu from '../components/guodu'
 export default {
     name:'contentHeader',
   components: {},
@@ -66,14 +74,21 @@ export default {
   computed: {},
   methods: {
     executionAnimation() {
+      // guodu()
       this.timer = setInterval(()=>{
-        this.status++
-        if(this.status >2){
-          this.status = 0
+        // this.status++
+        // if(this.status >2){
+        //   this.status = 0
+        // }
+        if(this.$refs.actual.offsetLeft<=-1000){
+          this.$refs.actual.left = 0
         }
+        guodu(this.$refs.actual,this.$refs.actual.offsetLeft-500,1,5)
+        console.log(this.$refs.actual)
       },5000)
       
     },
+    
     visible(index) {
       console.log(123)
         clearInterval(this.timer)
@@ -128,17 +143,31 @@ export default {
     width: 49%;
     float: left;
     text-align: left;
-    div{
-      img{
-        width: 500px;
-        height: 300px;
-        margin-top: 100px;
-      }
-      div{
-        text-align: left;
-        width: 300px;
-        margin: 50px 0;
-        line-height: 25px;
+    .visual{
+      width: 500px;
+      position: relative;
+      height: 600px;
+      overflow: hidden;
+      left: 0;
+      .actual{
+        width: 1500px;
+        position: absolute;
+        overflow: hidden;
+        div{
+          float: left;
+          width: 500px;
+          img{
+            width: 500px;
+            height: 300px;
+            margin-top: 100px;
+          }
+          div{
+            text-align: left;
+            width: 300px;
+            margin: 50px 0;
+            line-height: 25px;
+          }
+        }
       }
     }
   }

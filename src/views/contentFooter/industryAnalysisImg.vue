@@ -11,20 +11,26 @@
               </div>
           </div>
       </div> -->
-      <div class="one">
-          <div class="two">
-              <div class="three">
-                  <div class="four"></div>
+      <div class="one" ref="one">
+          <div class="two" ref="two">
+              <div class="three" ref="three">
+                  <div class="four" ref="four"></div>
               </div>
           </div>
       </div>
       <ul>
-          <li v-for="(item,index) in list" :key="index" @mouseenter="changeArticle(index)"> {{item}} </li>
+          <li 
+          v-for="(item,index) in list"
+           :key="index" 
+           ref="dsad"
+            @mouseenter="changeArticle(index)"
+            @mouseleave="cancelBac(index)"
+            > <span></span>{{item}} </li>
       </ul>
       <div class="introduce">
-          <h4> {{details.title}} </h4>
-          <p> {{details.content}} </p>
-          <img :src="details.image" alt="">
+          <h4> {{details[flag].title}} </h4>
+          <p> {{details[flag].content}} </p>
+          <img :src="details[flag].image" alt="">
       </div>
   </div>
 </template>
@@ -50,25 +56,90 @@ export default {
         list:[
             '食品加工行业','农林畜牧行业','石油化工行业','电力行业','钢铁行业','给排水行业','煤炭矿产行业','焦化行业','水泥建材行业'
         ],
-        details:{
-            title:'鞍山钢厂内的无线改造项目鞍山 钢厂内的无线改造内的无线改造 内的无线改造......',
+        details:[
+            {
+            title:'1无线改造项目鞍山 钢厂内的无线改造内的无线改造 内的无线改造......',
+            content:'在众多的工业现场中，钢厂的环境最为复杂和恶劣，可以说是整个工业企业制造在众多的工业现场中，钢厂的环境最为复杂和恶劣，可以说是整'
+            ,image:require('../../images/blockArrow.png')
+        },
+        {
+            title:'2内的无线改造项目鞍山 钢厂内的无线改造内的无线改造 内的无线改造......',
+            content:'在众多的工业现场中，钢厂的环境最为复杂和恶劣，可以说是整个工业企业制造在众多的工业现场中，钢厂的环境最为复杂和恶劣，可以说是整'
+            ,image:require('../../images/blockArrow.png')
+        },
+        {
+            title:'3内的无线改造项目鞍山 钢厂内的无线改造内的无线改造 内的无线改造......',
+            content:'在众多的工业现场中，钢厂的环境最为复杂和恶劣，可以说是整个工业企业制造在众多的工业现场中，钢厂的环境最为复杂和恶劣，可以说是整'
+            ,image:require('../../images/blockArrow.png')
+        },
+        {
+            title:'4厂内的无线改造项目鞍山 钢厂内的无线改造内的无线改造 内的无线改造......',
             content:'在众多的工业现场中，钢厂的环境最为复杂和恶劣，可以说是整个工业企业制造在众多的工业现场中，钢厂的环境最为复杂和恶劣，可以说是整'
             ,image:require('../../images/blockArrow.png')
         }
+        ,
+        {
+            title:'5厂内的无线改造项目鞍山 钢厂内的无线改造内的无线改造 内的无线改造......',
+            content:'在众多的工业现场中，钢厂的环境最为复杂和恶劣，可以说是整个工业企业制造在众多的工业现场中，钢厂的环境最为复杂和恶劣，可以说是整'
+            ,image:require('../../images/blockArrow.png')
+        }
+        ,
+        {
+            title:'6厂内的无线改造项目鞍山 钢厂内的无线改造内的无线改造 内的无线改造......',
+            content:'在众多的工业现场中，钢厂的环境最为复杂和恶劣，可以说是整个工业企业制造在众多的工业现场中，钢厂的环境最为复杂和恶劣，可以说是整'
+            ,image:require('../../images/blockArrow.png')
+        }
+        ,
+        {
+            title:'7厂内的无线改造项目鞍山 钢厂内的无线改造内的无线改造 内的无线改造......',
+            content:'在众多的工业现场中，钢厂的环境最为复杂和恶劣，可以说是整个工业企业制造在众多的工业现场中，钢厂的环境最为复杂和恶劣，可以说是整'
+            ,image:require('../../images/blockArrow.png')
+        }
+        ,
+        {
+            title:'8厂内的无线改造项目鞍山 钢厂内的无线改造内的无线改造 内的无线改造......',
+            content:'在众多的工业现场中，钢厂的环境最为复杂和恶劣，可以说是整个工业企业制造在众多的工业现场中，钢厂的环境最为复杂和恶劣，可以说是整'
+            ,image:require('../../images/blockArrow.png')
+        },
+        {
+            title:'9厂内的无线改造项目鞍山 钢厂内的无线改造内的无线改造 内的无线改造......',
+            content:'在众多的工业现场中，钢厂的环境最为复杂和恶劣，可以说是整个工业企业制造在众多的工业现场中，钢厂的环境最为复杂和恶劣，可以说是整'
+            ,image:require('../../images/blockArrow.png')
+        }
+
+        ]
     };
   },
   watch: {},
   computed: {},
   methods: {
-      setBac(index) {
-          console.log(123)
+      cancelBac(index){
+          this.$refs.one.style.background = ''
+          this.$refs.two.style.background = ''
+          this.$refs.three.style.background = ''
+          this.$refs.four.style.background = ''
+      },
+      changeArticle(index){
           this.flag = index
-      },
-      setLeaveBac() {
-          
-      },
-      changeArticle(){
-          console.log(123)
+          if(index === 0 ||index === 7){
+              this.$refs.one.style.background = '#ffe6d8'
+              
+          }
+          if(index === 1 ||index === 6){
+              this.$refs.two.style.background = '#fff1e9'
+              this.$refs.one.style.background = '#ffe6d8'
+          }
+          if(index ===2 ||index === 5){
+              this.$refs.three.style.background = '#ffe6d8'
+              this.$refs.one.style.background = '#ffe6d8'
+              this.$refs.two.style.background = '#fff1e9'
+          }
+          if(index ===3 ||index === 4){
+              this.$refs.three.style.background = '#ffe6d8'
+              this.$refs.one.style.background = '#ffe6d8'
+              this.$refs.two.style.background = '#fff1e9'
+              this.$refs.four.style.background = '#fff1e9'
+          }
       }
   },
   created() {},
@@ -110,7 +181,7 @@ export default {
         border: 1px solid #ffece1;
         border-radius: 50%;
         .two:hover{
-        background: #ffe6d8;
+        background: #fff1e9;
     }
         .two{
             width: 600px;
@@ -130,7 +201,7 @@ export default {
                  border-radius: 50%;
                   background: #fff;
               .four:hover{
-        background: #ffe6d8;
+        background: #fff1e9;
     }    
                 .four{
                     width: 200px;
@@ -152,10 +223,20 @@ export default {
         li{
             width: 80px;
             float: left;
-            margin-left: 20px;
+            padding-left: 20px;
             list-style: initial;
             text-align: left;
             cursor: pointer;
+            list-style: none;
+        }
+        li span{
+            display: block;
+            width: 5px;
+            height: 5px ;
+            background: #000;
+            float: left;
+            margin-left: -13px;
+            margin-top: 6px;
         }
         li:hover{
             color: #ea5404;

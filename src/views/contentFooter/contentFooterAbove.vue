@@ -80,7 +80,7 @@ export default {
         float: left;
         ul{
             overflow: hidden;
-            margin-top: 100px;
+            margin-top: 40px;
             li:hover{
                 opacity: 0.6; 
                 background: #fff;
@@ -88,21 +88,23 @@ export default {
                 z-index: 0;
             }
             li{
-                width: 190px;
+                width: 250px;
                 float: left;
-                margin:30px 0 0 110px;
+                margin:30px 0 0 50px;
             
                 img{
-                    width: 190px;
-                    height: 110px;
+                    width: 250px;
+                    height: 150px;
                 }
                div{
                     width: 190px;
+                    float: right;
                     h3,p{
                     text-align: right;
                 }
                 h3{
                     margin: 10px 0;
+                    font-weight: 600;
                 }
                }
             }
@@ -112,27 +114,31 @@ export default {
         width:49%;
         float: right;
         .minContent{
-            width: 130px;
+            width: 200px;
             margin: 150px auto 0;
             text-align: left;
             div{
                 overflow: hidden;
+                margin: 20px 0;
                 .rightPoint{
                     width: 15px;
                     height:15px;
                     background: #ea5404;
                     float: left;
                     margin: 10px;
+                    margin-top: 19px;
                     margin-left: 0;
                     // border-radius: 50%;
                 }
                 h3{
                     float: left;
                     margin-top: 8px;
+                    font-size: 25px;
+
                 }
             }
             p{
-                font-size: 12px;
+                font-size: 15px;
             }
         }
     }

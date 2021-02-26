@@ -45,13 +45,10 @@ export default {
   computed: {},
   methods: {
       calculation(e) {
-          const calculation = document.getElementById('calculation')
-          console.log(calculation.offsetTop)
       }
   },
   created() {},
   mounted() {
-      console.log(123)
       this.calculation()
   }
 };
