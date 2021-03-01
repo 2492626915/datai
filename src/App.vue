@@ -9,6 +9,7 @@
     <Cooperation/>
     <News/>
     <Footer/>
+    <ContactMode class="ContactMode"/>
   </div>
 </template>
 <script>
@@ -21,6 +22,7 @@ import ContentFooter from './views/contentFooter/contentFooter'
 import Cooperation from './views/cooperation'
 import News from './views/news'
 import Footer from './views/footer'
+import ContactMode from './views/contactMode'
 export default {
   name:'app',
   components:{
@@ -32,7 +34,8 @@ export default {
     ContentFooter,
     Cooperation,
     News,
-    Footer
+    Footer,
+    ContactMode
   }
 }
 </script>
@@ -44,6 +47,12 @@ export default {
   text-align: center;
   background: url('./images/gezi.png');
   background-size: 100%;
+  position:relative;
+  .ContactMode{
+    position:absolute;
+    top:600px;
+  right:0;
+  }
 }
 *{
   margin: 0;

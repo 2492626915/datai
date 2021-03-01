@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div class="footer" ref="pronbit" :class='{"isShow":isShow === true}'>
       <p>
           <span id="maodian">友情链接：</span>
           <a href="#maodian">百度</a>|
@@ -46,22 +46,51 @@ export default {
   props: {},
   data() {
     return {
+        isShow:false
     };
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+      handleScrollx() {
+    //   console.log('滚动高度',window.pageYOffset)
+
+    //   console.log('距离顶部高度',this.$refs.pronbit.getBoundingClientRect().top)
+      if(this.$refs.pronbit.getBoundingClientRect().top<=500){
+          console.log(123)
+          this.isShow = true
+      }
+
+}
+  },
   created() {},
-  mounted() {}
+  mounted() {
+      window.addEventListener('scroll',this.handleScrollx,true)
+  }
 };
 </script>
 <style lang="scss" scoped>
+.isShow{
+    animation: identifier 3s forwards;
+}
+@keyframes identifier {
+    0%{
+        opacity: 1;
+    }
+    50%{
+       opacity: 0.5;
+    }
+    100%{
+        opacity: 1;
+    }
+}
 .footer{
     width: 1100px;
     margin: 0 auto;
     text-align: left;
    .footerInfo{
        margin-top: 100px;
+       overflow: hidden;
         .info{
         float: left;
         width: 33%;

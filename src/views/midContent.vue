@@ -2,7 +2,7 @@
   <div class="midContent">
       <div class="surround">
           <div class="communication" v-for="(item,index) in list" :key="index">
-            <div class="zuo">
+            <!-- <div class="zuo">
                 <img :src="item.image" alt="">
                 <h3>{{item.title}}</h3>
                 <p> {{item.content}} </p>
@@ -11,7 +11,19 @@
                 <img :src="item.image" alt="">
                 <h3>{{item.title}}</h3>
                 <p> {{item.content}} </p>
-            </div>
+            </div> -->
+            <Swipe autoplay=3000 :show-indicators=false>
+                <SwipeItem>
+                    <img :src="item.image" alt="">
+                    <h3>{{item.title}}</h3>
+                    <p> {{item.content}} </p>
+                </SwipeItem>
+                <SwipeItem>
+                    <img :src="item.image" alt="">
+                    <h3>{{item.title}}</h3>
+                    <p> {{item.content}} </p>
+                </SwipeItem>
+            </Swipe>
           </div>
             <div class="arrow">
                 <img src="../images/形状-15.png" alt="" :class="this.flag === true?'anmition':'stopAnmition'"><br>
@@ -22,14 +34,19 @@
 </template>
 
 <script>
+import { Swipe,SwipeItem } from 'vant'
 export default {
     name:'midContent',
-  components: {},
+  components: {
+      Swipe,
+      SwipeItem
+  },
   props: {},
   data() {
     return {
         flag:true,
         timer:null,
+        
         list:[
             {
                 image:require('../images/products1.png'),

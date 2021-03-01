@@ -1,5 +1,5 @@
 <template>
-  <div class="news">
+  <div class="news" ref="news" :class="{'isShow':isShow}">
         <div class="nav">
             <span class="point"></span>
             <span class="newsTitle">新闻中心</span>
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import handleScrollx from '../components/comeOutAnmition'
 export default {
     name:'news',
   components: {},
@@ -75,17 +76,44 @@ export default {
                 title:'大萨达撒多撒大大大大阿萨德sad发多少',
                 content:'达到四川在线梵蒂冈发电VR刚发的重新发过的发多少吧成吃个饭大风车V型地方DVD出发点发VR发吧成反腐成发V型从成地方成大V让对方成的大V成地方吃顿饭'
             }
-        ]
+        ],
+        isShow:''
     };
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+      anmition() {
+          if(this.isShow!=true){
+              this.isShow = handleScrollx(this.$refs.news)
+          }else{
+              return
+          }
+      }
+
+  },
   created() {},
-  mounted() {}
+  mounted() {
+      window.addEventListener('scroll',this.anmition,true)
+  }
 };
 </script>
 <style lang="scss" scoped>
+.isShow{
+    animation: identifier 3s forwards;
+}
+@keyframes identifier {
+    0%{
+        opacity: 1;
+    }
+    50%{
+       opacity: 0.5;
+       background: #000;
+    }
+    100%{
+        opacity: 1;
+    }
+}
 .news{
     text-align: left;
     width: 1200px;

@@ -1,5 +1,5 @@
 <template>
-  <div class="introduce">
+  <div class="introduce" ref="introduce" :class="{'isShow':isShow}">
       <ul>
           <li v-for="(item,index) in list" :key="index"> 
             <h3>
@@ -15,6 +15,7 @@
   </div>
 </template>
 <script>
+import handleScrollx from '../components/comeOutAnmition'
 export default {
   name:'introduce',
   components: {},
@@ -47,20 +48,44 @@ export default {
             }
         ],
         content:'使用 @media 查询，你可以针对不同的媒体类型定义不同的样式。@media 可以针对不同的屏幕尺寸设置不同的样式，特别是如果你需要设置设计响应式的页面，@media 是非常有用的。当你重置浏览器大小的过程中，页面也会根据浏览器的宽度和高度重新渲染使用 @media 查询，你可以针对不同的媒体类型定义不同的样式。@media 可以针对不同的屏幕尺寸设置不同的样式，特别是如果你需要设置设计响应式的页面，@media 是非常有用的。当你重置浏览器大小的过程中，页面也会根据浏览器的宽度和高度重新渲染'
-
+        ,isShow:''
     };
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+      anmition() {
+          if(this.isShow!=true){
+              this.isShow = handleScrollx(this.$refs.introduce)
+          }else{
+              return
+          }
+      }
+  },
   created() {},
-  mounted() {}
+  mounted() {
+      window.addEventListener('scroll',this.anmition,true)
+  }
 };
 </script>
 <style lang="scss" scoped>
+.isShow{
+    animation: identifier 3s forwards;
+}
+@keyframes identifier {
+    0%{
+        opacity: 1;
+    }
+    50%{
+       opacity: 0.5;
+    }
+    100%{
+        opacity: 1;
+    }
+}
 .introduce{
     width: 1550px;
-    margin: 0 auto;
+    margin: 100px auto;
     ul{
         width: 850px;
         overflow: hidden;

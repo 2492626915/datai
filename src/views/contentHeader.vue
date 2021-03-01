@@ -6,20 +6,16 @@
         <h2 
         v-for="(item,index) in list" 
         :key="index"
-        @mouseenter="visible(index)" @mouseleave="invisible"
         > 
-        <span :class="status === item.flag?'bottomBorder':''">{{item.title}}</span>
+        <span  @mouseenter="visible(index)" :class="status === item.flag?'bottomBorder':''">{{item.title}}</span>
          </h2>
       </div>
     </div>
     <div class="right">
       <div class="visual">
-        <div class="actual" ref="actual">
-              <div v-for="(item,index) in list" :key="index"
-               >
-               <!-- :style="status === item.flag?'display:block':'display:none'" -->
-
-            <img :src="item.image" alt="">
+        <Swipe class="actual"  autoplay=3000 ref="changeItem" @change="changeActive" :show-indicators=false>
+        <SwipeItem v-for="(item,index) in list" :key="index">
+          <img :src="item.image" alt="">
             <div>
               <h3>
               {{item.contentTiele}}
@@ -27,9 +23,9 @@
               <p>
                 {{item.content}}
               </p>
-            </div>
-          </div>
-        </div>
+            </div> 
+        </SwipeItem>
+      </Swipe>
       </div>
     </div>
   </div>
@@ -37,9 +33,13 @@
 
 <script>
 import guodu from '../components/guodu'
+import { Swipe,SwipeItem } from 'vant'
 export default {
     name:'contentHeader',
-  components: {},
+  components: {
+    Swipe,
+    SwipeItem
+  },
   props: {},
   data() {
     return {
@@ -73,38 +73,42 @@ export default {
   watch: {},
   computed: {},
   methods: {
-    executionAnimation() {
-      // guodu()
-      this.timer = setInterval(()=>{
-        // this.status++
-        // if(this.status >2){
-        //   this.status = 0
-        // }
-        if(this.$refs.actual.offsetLeft<=-1000){
-          this.$refs.actual.left = 0
-        }
-        guodu(this.$refs.actual,this.$refs.actual.offsetLeft-500,1,5)
-        console.log(this.$refs.actual)
-      },5000)
-      
-    },
-    
     visible(index) {
       console.log(123)
-        clearInterval(this.timer)
+        // clearInterval(this.timer)
         this.status = index
+        this.$refs.changeItem.swipeTo(index,{
+          immediate:true
+        })
     },
     invisible() {
-      this.executionAnimation()
+    },
+    changeActive(index) {
+      this.status = index
     }
   },
   created() {},
   mounted() {
-    this.executionAnimation()
+    // this.executionAnimation()
   }
 };
 </script>
 <style lang="scss" scoped>
+.isShow{
+    animation: identifier 3s forwards;
+}
+@keyframes identifier {
+    0%{
+        opacity: 1;
+    }
+    50%{
+       opacity: 0.5;
+       background: #000;
+    }
+    100%{
+        opacity: 1;
+    }
+}
 .contentHeader{
   width: 1200px;
   margin: 0 auto;
@@ -144,18 +148,8 @@ export default {
     float: left;
     text-align: left;
     .visual{
-      width: 500px;
-      position: relative;
-      height: 600px;
-      overflow: hidden;
-      left: 0;
       .actual{
-        width: 1500px;
-        position: absolute;
-        overflow: hidden;
         div{
-          float: left;
-          width: 500px;
           img{
             width: 500px;
             height: 300px;

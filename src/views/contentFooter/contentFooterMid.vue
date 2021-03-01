@@ -1,5 +1,5 @@
 <template>
-  <div class="contentFooterMid" id="calculation">
+  <div class="contentFooterMid" id="calculation" ref="calculation" :class="{'isShow':isShow}">
       <ul>
           <li v-for="(item,index) in list" :key="index">
               <div class="time">
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import handleScrollx from '../../components/comeOutAnmition'
 export default {
     name:'contentFooterMid',
   components: {},
@@ -38,22 +39,45 @@ export default {
                 time:'2020-11-11',
                 content:'免费低分局第四是ofID技术费多少积分工地方面哪里打开VN面对搜给局欧舒丹搜if酒叟都是 '
             }
-        ]
+        ],
+        isShow:''
     };
   },
   watch: {},
   computed: {},
   methods: {
       calculation(e) {
+      },
+      anmition() {
+          if(this.isShow!=true){
+              this.isShow = handleScrollx(this.$refs.calculation)
+          }else{
+              return
+          }
       }
   },
   created() {},
   mounted() {
       this.calculation()
+       window.addEventListener('scroll',this.anmition,true)
   }
 };
 </script>
 <style lang="scss" scoped>
+.isShow{
+    animation: identifier 3s forwards;
+}
+@keyframes identifier {
+    0%{
+        opacity: 1;
+    }
+    50%{
+       opacity: 0.5;
+    }
+    100%{
+        opacity: 1;
+    }
+}
 .contentFooterMid{
     width: 100%;
     height: 500px;
